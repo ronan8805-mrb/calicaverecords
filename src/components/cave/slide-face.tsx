@@ -109,19 +109,23 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
               </p>
             </div>
           ) : (
-            <div className="max-w-xl xl:max-w-lg">
-              <p className="text-xs font-medium tracking-brand uppercase">
+            <div
+              className={`artist-copy max-w-xl xl:max-w-lg ${
+                slide.id === "mist" ? "artist-copy-light" : ""
+              } ${slide.id === "mazza" ? "artist-copy-adapt" : ""}`}
+            >
+              <p className="artist-kicker text-xs font-medium tracking-brand uppercase">
                 Where the next wave lives
               </p>
-              <h1 className="mt-2 font-display text-poster font-black uppercase">
+              <h1 className="artist-name mt-2 font-display text-poster font-black uppercase">
                 {slide.nameLines?.map((line) => (
                   <span key={line} className="block">
                     {line}
                   </span>
                 ))}
               </h1>
-              <p className="mt-4 text-xs font-semibold tracking-brand">{slide.genre}</p>
-              <p className="mt-4 max-w-prose text-sm leading-relaxed font-light opacity-90 md:text-base">
+              <p className="artist-genre mt-4 text-xs font-semibold tracking-brand">{slide.genre}</p>
+              <p className="artist-bio mt-4 max-w-prose text-sm leading-relaxed font-light opacity-90 md:text-base">
                 {slide.bio}
               </p>
             </div>
