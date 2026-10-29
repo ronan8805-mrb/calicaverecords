@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Calicave Records">
+  <rect width="32" height="32" rx="8" fill="#101513"/>
+  <circle cx="16" cy="16.2" r="12.4" fill="#101513" stroke="#68E0B5" stroke-width="2"/>
+  <circle cx="21.6" cy="10.6" r="2.5" fill="#FFFFFF"/>
+  <circle cx="11.2" cy="9.3" r="2.7" fill="#FFFFFF"/>
+  <circle cx="18.2" cy="8.7" r="2.45" fill="#FFFFFF"/>
+  <circle cx="14.7" cy="14.1" r="5.05" fill="#FFFFFF"/>
+  <ellipse cx="14.7" cy="15.7" rx="2.15" ry="1.45" fill="#68E0B5"/>
+  <circle cx="14.7" cy="15.55" r="0.75" fill="#101513"/>
+  <ellipse cx="14.4" cy="22.15" rx="5.35" ry="3.55" fill="#FFFFFF"/>
+  <rect x="9.3" y="24.15" width="10.2" height="2.15" rx="0.4" fill="#CF0105"/>
+</svg>

@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+
+  --color-mint: #68e0b5;
+  --color-cyan: #2fc7c8;
+  --color-blood: #cf0105;
+  --color-ink: #101513;
+  --color-paper: #ffffff;
+
+  --text-display: clamp(3.15rem, 6.6vw, 7.4rem);
+  --text-display--line-height: 0.82;
+  --text-poster: clamp(4.6rem, 12vw, 10.5rem);
+  --text-poster--line-height: 0.8;
+  --text-enter: clamp(2.6rem, 6vw, 5.4rem);
+  --text-enter--line-height: 0.86;
+
+  --tracking-brand: 0.22em;
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-mint);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-mint);
+  }
+
+  :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+}
+
+.cave-scene {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  touch-action: none;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.face-back {
+  transform: rotateY(180deg);
+}
+
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  background-image: url("/media/grain.png");
+  background-size: 160px 160px;
+}
+
+.home-still {
+  width: min(58vw, 250px);
+  height: auto;
+  max-height: 30dvh;
+  object-fit: contain;
+}
+
+.home-photo {
+  position: absolute;
+  inset: 4rem 0 0 0;
+  width: 100%;
+  height: calc(100% - 4rem);
+  object-fit: cover;
+  object-position: left top;
+}
+
+.artist-photo {
+  position: absolute;
+  inset: 4rem 0 0 0;
+  width: 100%;
+  height: calc(100% - 4rem);
+  object-fit: cover;
+  object-position: 80% 12%;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 42%, #000 100%);
+  mask-image: linear-gradient(to top, transparent 0%, #000 42%, #000 100%);
+}
+
+@media (min-width: 1280px) {
+  .artist-photo {
+    object-position: right center;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 16%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 30%, #000 100%);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to top, transparent 0%, #000 16%, #000 100%),
+      linear-gradient(to right, transparent 0%, #000 30%, #000 100%);
+    mask-composite: intersect;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: max(1.15rem, env(safe-area-inset-bottom));
+}
+
+@keyframes cave-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.cave-spin {
+  animation: cave-spin 22s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cave-spin {
+    animation: none;
+  }
+}
