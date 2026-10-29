@@ -42,21 +42,27 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
       )}
       <div className="grain" aria-hidden="true" />
 
-      <header className="relative z-20 flex h-16 shrink-0 items-center justify-between gap-3 px-4 md:px-8">
-        <button
-          type="button"
-          onClick={onHome}
-          className="flex items-center gap-2.5"
-          aria-label="Calicave Records, home"
-        >
-          <img
-            src="/media/logo-nav.png"
-            alt=""
-            className="size-11 rounded-full"
-            draggable={false}
-          />
-          <span className="font-display text-2xl leading-none tracking-wide">CALICAVE</span>
-        </button>
+      <header
+        className={`relative z-20 flex h-16 shrink-0 items-center gap-3 px-4 md:px-8 ${
+          isHome ? "justify-end" : "justify-between"
+        }`}
+      >
+        {isHome ? null : (
+          <button
+            type="button"
+            onClick={onHome}
+            className="flex items-center gap-2.5"
+            aria-label="Calicave Records, home"
+          >
+            <img
+              src="/media/logo-nav.png"
+              alt=""
+              className="size-11 rounded-full"
+              draggable={false}
+            />
+            <span className="font-display text-2xl leading-none tracking-wide">CALICAVE</span>
+          </button>
+        )}
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
           {NAV.map((item) => (
             <button
@@ -85,7 +91,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
             src="/media/logo-mark.png"
             alt={slide.imageAlt}
             draggable={false}
-            className="home-still mx-auto mt-2 xl:hidden"
+            className="home-still mt-2 self-start xl:hidden"
           />
         ) : null}
 
