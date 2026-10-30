@@ -140,13 +140,13 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
               <div className="tour-glass">
                 <img src={slide.image} alt={slide.imageAlt} draggable={false} />
               </div>
-              <p className="mt-3 text-[0.62rem] font-medium tracking-brand uppercase">
+              <p className="mt-2 text-[0.62rem] font-medium tracking-brand uppercase">
                 Calicave Records presents
               </p>
-              <h1 className="mt-1 font-display text-[2.55rem] leading-[0.84] font-black uppercase">
+              <h1 className="mt-1 font-display text-[2.05rem] leading-[0.84] font-black uppercase">
                 The Takeover Tour
               </h1>
-              <p className="mt-2 max-w-md text-[0.84rem] leading-snug font-light text-paper/80">
+              <p className="mt-1.5 max-w-md text-[0.75rem] leading-snug font-light text-paper/80">
                 CaliCave Records presents Meekz and Mist on their first joint tour. Starting in the
                 UK and Ireland, finishing in Thailand. December 2026 – January 2027.
               </p>

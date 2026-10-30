@@ -126,11 +126,11 @@
 
 .tour-glass {
   position: relative;
-  width: min(38vw, 168px);
+  width: min(30vw, 128px);
   align-self: flex-end;
   flex: 0 0 auto;
-  padding: 7px;
-  border-radius: 22px;
+  padding: 6px;
+  border-radius: 18px;
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.34),
@@ -173,13 +173,13 @@
   grid-template-rows: repeat(4, auto);
   grid-auto-flow: column;
   column-gap: 0.7rem;
-  margin-top: 0.45rem;
+  margin-top: 0.35rem;
 }
 
 .tour-dates li {
   min-width: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.16);
-  padding: 0.16rem 0 0.1rem;
+  padding: 0.1rem 0 0.06rem;
 }
 
 .tour-city {

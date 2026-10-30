@@ -141,6 +141,21 @@ function ReleasesBody({ onJump }: { onJump: (index: number) => void }) {
     <div>
       <p className="text-xs tracking-brand text-mint uppercase">Catalogue</p>
       <h2 className="mt-3 font-display text-6xl font-black uppercase md:text-8xl">Releases</h2>
+      <p className="mt-8 text-xs tracking-brand text-mint uppercase">Upcoming</p>
+      <ul>
+        {["01", "02"].map((n) => (
+          <li key={n} className="border-t border-paper/15">
+            <div className="grid w-full gap-3 py-6 text-left md:grid-cols-[4rem_1fr_auto] md:items-baseline md:gap-8">
+              <span className="font-display text-2xl text-mint tabular-nums">{n}</span>
+              <span className="block font-display text-4xl font-black uppercase md:text-5xl">
+                ?????
+              </span>
+              <span className="text-xs font-semibold tracking-brand text-mint">Announcing soon</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p className="mt-10 text-xs tracking-brand text-mint uppercase">Out now</p>
       <ul className="mt-10">
         {RELEASES.map((release, i) => {
           const index = SLIDES.findIndex((slide) => slide.id === release.artistId);
@@ -211,19 +226,23 @@ function AboutBody() {
       <div>
         <p className="text-xs tracking-brand text-mint uppercase">The label</p>
         <h2 className="mt-3 font-display text-6xl font-black uppercase md:text-8xl">
-          Two coasts.
+          The bear
           <br />
-          One roster.
+          takes over.
         </h2>
       </div>
       <div className="max-w-xl space-y-4 text-base leading-relaxed font-light text-paper/85 md:text-lg">
         <p>
-          Calicave Records is where the next wave lives. The badge carries a California bear and a
-          Thai flag — sun on one side, a second home on the other — wrapped around one roster.
+          An infamous bear, known worldwide from California to Europe and Asia, has turned his
+          sights on the music industry. Calicave Records is the move.
+        </p>
+        <p>
+          He already had the name. Now he wants the charts. One roster, built to travel, starting
+          with the artists who can carry a room on either coast.
         </p>
         <p>
           MIST put Birmingham on the map. MEEKZ came out of Manchester with his face covered and
-          the charts open. Hottest artists in the world, signed to Calicave.
+          the charts open. More acts are still to be announced.
         </p>
         <p className="text-sm tracking-wide text-mint">Where the next wave lives.</p>
       </div>
