@@ -103,12 +103,28 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
           {isHome ? (
             <div className="xl:w-[48%] xl:max-w-xl">
               <p className="text-xs font-medium tracking-brand uppercase">Calicave Records</p>
-              <h1 className="mt-3 font-display text-display font-black uppercase">
-                Where the
-                <br />
-                next wave
-                <br />
-                lives
+              <h1 className="wave-title mt-3 font-display text-display font-black uppercase">
+                <span className="block">
+                  <span className="wave-word" style={{ animationDelay: "0s" }}>
+                    Where
+                  </span>{" "}
+                  <span className="wave-word" style={{ animationDelay: "0.12s" }}>
+                    the
+                  </span>
+                </span>
+                <span className="block">
+                  <span className="wave-word" style={{ animationDelay: "0.24s" }}>
+                    next
+                  </span>{" "}
+                  <span className="wave-word" style={{ animationDelay: "0.36s" }}>
+                    wave
+                  </span>
+                </span>
+                <span className="block">
+                  <span className="wave-word" style={{ animationDelay: "0.48s" }}>
+                    lives
+                  </span>
+                </span>
               </h1>
               <p className="mt-5 max-w-md text-base font-medium leading-snug md:text-lg">
                 Biggest Artists In The World Signed To Calicave Records
@@ -118,12 +134,11 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
             <div
               className={`artist-copy max-w-xl xl:max-w-lg ${
                 slide.id === "mist" ? "artist-copy-light" : ""
-              } ${slide.id === "mazza" ? "artist-copy-adapt" : ""}`}
+              } ${slide.id === "mazza" ? "artist-copy-adapt" : ""} ${
+                slide.id === "reggie" ? "artist-copy-reggie" : ""
+              }`}
             >
-              <p className="artist-kicker text-xs font-medium tracking-brand uppercase">
-                Where the next wave lives
-              </p>
-              <h1 className="artist-name mt-2 font-display text-poster font-black uppercase">
+              <h1 className="artist-name font-display text-poster font-black uppercase">
                 {slide.nameLines?.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -150,12 +165,12 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
           <button
             type="button"
             onClick={onNext}
-            className={`mt-2 flex items-center gap-3 text-left font-display font-black uppercase ${
+            className={`next-link mt-2 flex items-center gap-3 text-left font-display font-black uppercase ${
               isHome ? "text-enter" : "text-3xl md:text-5xl"
             }`}
           >
             {isHome ? "Enter the cave" : `Next · ${next.short}`}
-            <ArrowRight className={isHome ? "size-8 md:size-12" : "size-7 md:size-9"} />
+            <ArrowRight className={`next-arrow ${isHome ? "size-8 md:size-12" : "size-7 md:size-9"}`} />
           </button>
           <p className="mt-2 hidden text-xs tracking-wide opacity-70 xl:block">
             Scroll, swipe, or use the arrow keys
@@ -166,7 +181,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
             type="button"
             onClick={onPrev}
             aria-label="Previous slide"
-            className={`grid size-12 place-items-center rounded-full border transition-colors ${chipClass(slide.tone)}`}
+            className={`cave-ctrl grid size-12 place-items-center rounded-full border transition-colors ${chipClass(slide.tone)}`}
           >
             <ArrowLeft className="size-5" />
           </button>
@@ -174,7 +189,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
             type="button"
             onClick={onNext}
             aria-label={isHome ? "Enter the cave" : `Next, ${next.short}`}
-            className={`relative grid size-20 place-items-center rounded-full border md:size-28 ${chipClass(slide.tone)}`}
+            className={`cave-ctrl relative grid size-20 place-items-center rounded-full border md:size-28 ${chipClass(slide.tone)}`}
           >
             <svg viewBox="0 0 100 100" className="cave-spin absolute inset-1" aria-hidden="true">
               <defs>

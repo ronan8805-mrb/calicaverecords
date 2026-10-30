@@ -7,6 +7,7 @@
   --color-mint: #68e0b5;
   --color-cyan: #2fc7c8;
   --color-blood: #cf0105;
+  --color-gold: #fbc203;
   --color-ink: #101513;
   --color-paper: #ffffff;
 
@@ -90,10 +91,91 @@
   height: auto;
   max-height: 30dvh;
   object-fit: contain;
-  transform-origin: 50% 50%;
-  animation:
-    beat-bounce 1.28s cubic-bezier(0.22, 1, 0.36, 1) infinite,
-    beat-glow 1.28s ease-in-out infinite;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-still:hover {
+  transform: scale(1.04) rotate(-2deg);
+}
+
+.wave-word {
+  display: inline-block;
+  animation: wave-bob 2.2s ease-in-out infinite;
+}
+
+@keyframes wave-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.14em);
+  }
+}
+
+.artist-name {
+  animation: wave-bob 2.6s ease-in-out infinite;
+}
+
+.artist-genre {
+  animation: wave-bob 2.6s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.next-arrow {
+  animation: arrow-nudge 1.35s ease-in-out infinite;
+}
+
+@keyframes arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+.artist-photo {
+  transform-origin: 70% 20%;
+  animation: photo-drift 7s ease-in-out infinite;
+}
+
+@keyframes photo-drift {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.next-arrow,
+.cave-ctrl {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.next-link:hover .next-arrow {
+  transform: translateX(8px);
+}
+
+.cave-ctrl:hover {
+  transform: scale(1.08);
+}
+
+.cave-ctrl:active {
+  transform: scale(0.94);
+}
+
+@media (hover: hover) {
+  article:hover .artist-photo {
+    animation-play-state: paused;
+    transform: scale(1.045);
+  }
 }
 
 .home-photo {
@@ -154,7 +236,28 @@
   }
 
   .artist-copy-light .artist-name {
-    font-size: clamp(3.15rem, 16vw, 4.8rem);
+    font-size: clamp(5rem, 22vw, 7.5rem);
+    line-height: 0.82;
+  }
+
+  .artist-copy-light .artist-kicker,
+  .artist-copy-light .artist-genre {
+    font-size: 0.78rem;
+  }
+
+  .artist-copy-light .artist-bio {
+    max-width: 18rem;
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .artist-copy-adapt .artist-name {
+    font-size: clamp(2.85rem, 14vw, 4.2rem);
+    line-height: 0.82;
+  }
+
+  .artist-copy-reggie .artist-name {
+    font-size: clamp(4.15rem, 17vw, 6.5rem);
     line-height: 0.82;
   }
 
@@ -192,59 +295,20 @@
   transform-origin: 50% 50%;
 }
 
-@keyframes beat-bounce {
-  0%,
-  14%,
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  4% {
-    transform: translate3d(0, -14px, 0) scale(1.07);
-  }
-  9% {
-    transform: translate3d(0, 3px, 0) scale(0.97);
-  }
-  18% {
-    transform: translate3d(0, -6px, 0) scale(1.03);
-  }
-  26%,
-  52% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  58% {
-    transform: translate3d(0, -16px, 0) scale(1.08);
-  }
-  66% {
-    transform: translate3d(0, 2px, 0) scale(0.98);
-  }
-  74% {
-    transform: translate3d(0, -5px, 0) scale(1.02);
-  }
-  84% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes beat-glow {
-  0%,
-  14%,
-  26%,
-  52%,
-  84%,
-  100% {
-    filter: drop-shadow(0 0 4px rgba(255, 196, 64, 0.25))
-      drop-shadow(0 0 10px rgba(104, 224, 181, 0.15));
-  }
-  4%,
-  58% {
-    filter: drop-shadow(0 0 18px rgba(255, 214, 96, 0.95))
-      drop-shadow(0 0 38px rgba(104, 224, 181, 0.75));
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .cave-spin,
-  .home-still {
+  .wave-word,
+  .artist-name,
+  .artist-genre,
+  .next-arrow,
+  .artist-photo {
     animation: none;
+  }
+
+  .home-still,
+  .artist-photo,
+  .next-arrow,
+  .cave-ctrl {
+    transition: none;
   }
 }

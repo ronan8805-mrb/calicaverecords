@@ -1,9 +1,9 @@
-export type PanelId = "menu" | "artists" | "releases" | "about" | "contact";
+export type PanelId = "menu" | "artists" | "releases" | "news" | "about" | "contact";
 
 export type Tone = "ink" | "paper";
 
 export type Slide = {
-  id: "home" | "mist" | "meekz" | "mazza";
+  id: "home" | "mist" | "meekz" | "mazza" | "reggie";
   kind: "home" | "artist";
   bg: string;
   fg: string;
@@ -71,13 +71,62 @@ export const SLIDES: Slide[] = [
     bio: "Liverpool drill rapper. Recorded tracks while serving time and broke out with the viral hit “Murdaside”, which reached the UK Top 20. Known for raw Scouse drill storytelling and projects like Against All Odds and Different Times.",
     short: "Mazza L20",
   },
+  {
+    id: "reggie",
+    kind: "artist",
+    bg: "bg-gold",
+    fg: "text-ink",
+    tone: "ink",
+    theme: "#fbc203",
+    image: "/media/reggie.jpg",
+    imageAlt: "REGGIE",
+    nameLines: ["REGGIE"],
+    genre: "IRISH RAP / DRILL — DUNDALK",
+    bio: "Dundalk rapper who helped pioneer Irish drill. Broke out with “Talk of the Town”, which went global after a Fred again.. & Sammy Virji remix that hit millions of streams and charted in Ireland and the UK. Known for repping his hometown hard and blending drill with more commercial sounds.",
+    short: "Reggie",
+  },
 ];
 
 export const NAV: { id: Exclude<PanelId, "menu">; label: string }[] = [
   { id: "artists", label: "Artists" },
   { id: "releases", label: "Releases" },
+  { id: "news", label: "News" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
+];
+
+export type NewsItem = {
+  date: string;
+  title: string;
+  body: string;
+  artistId: Slide["id"];
+};
+
+export const NEWS: NewsItem[] = [
+  {
+    date: "Now",
+    title: "Reggie signs to the cave",
+    body: "Dundalk rapper Reggie joins Calicave. Talk of the Town, and the Fred again.. & Sammy Virji remix, is the record that took Irish drill worldwide.",
+    artistId: "reggie",
+  },
+  {
+    date: "Roster",
+    title: "Murdaside still moving",
+    body: "MAZZA L20’s Murdaside reached the UK Top 20. Against All Odds and Different Times are the projects sitting behind it.",
+    artistId: "mazza",
+  },
+  {
+    date: "Roster",
+    title: "MEEKZ stays masked",
+    body: "Respect the Come Up and TRU both hit the UK Top 15. Like Me and Fresh Out the Bank, with Dave, are the ones people ask for.",
+    artistId: "meekz",
+  },
+  {
+    date: "Roster",
+    title: "Midlands on the map",
+    body: "MIST’s Diamond in the Dirt hit the UK Top 5. So High with Fredo, Karla’s Back and Game Changer are the records that did it.",
+    artistId: "mist",
+  },
 ];
 
 export type Release = {
@@ -116,6 +165,13 @@ export const RELEASES: Release[] = [
     title: "Murdaside",
     note: "UK Top 20",
     tracks: ["Against All Odds", "Different Times"],
+  },
+  {
+    artistId: "reggie",
+    artist: "REGGIE",
+    title: "Talk of the Town",
+    note: "Ireland & UK",
+    tracks: ["Fred again.. & Sammy Virji remix"],
   },
 ];
 
