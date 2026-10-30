@@ -39,7 +39,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
           src={slide.image}
           alt={slide.imageAlt}
           draggable={false}
-          className="artist-photo"
+          className={`artist-photo${slide.id === "mist" ? " artist-photo-mist" : ""}`}
         />
       )}
       <div className="grain" aria-hidden="true" />

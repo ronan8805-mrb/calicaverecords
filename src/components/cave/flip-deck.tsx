@@ -307,7 +307,7 @@ export function FlipDeck() {
       }
       playerRef.current = null;
     };
-  }, [index]);
+  }, [index, current.track?.start, current.track?.youtubeId]);
 
   return (
     <main className={`relative h-dvh w-full overflow-hidden ${current.bg}`}>

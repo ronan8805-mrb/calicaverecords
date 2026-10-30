@@ -43,7 +43,7 @@ export const SLIDES: Slide[] = [
     genre: "UK RAP / GRIME — BIRMINGHAM",
     bio: "Birmingham rapper. After time inside he turned to music, signed to Warner with his Sickmade imprint, and put the Midlands on the map. Diamond in the Dirt hit the UK Top 5. Hits include “So High” (feat. Fredo), “Karla’s Back” and “Game Changer”.",
     short: "Mist",
-    track: { title: "So High", youtubeId: "V3yf1AHwxGc", start: 20 },
+    track: { title: "So High", youtubeId: "V3yf1AHwxGc", start: 30 },
   },
   {
     id: "meekz",
