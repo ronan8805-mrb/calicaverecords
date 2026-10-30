@@ -247,6 +247,14 @@
     object-position: 68% 12%;
   }
 
+  .artist-photo-meekz {
+    object-position: 56% 16%;
+  }
+
+  .artist-photo-reggie {
+    object-position: 74% 10%;
+  }
+
   .artist-kicker,
   .artist-genre {
     font-size: 0.62rem;
