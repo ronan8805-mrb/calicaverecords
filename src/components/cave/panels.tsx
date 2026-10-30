@@ -224,18 +224,22 @@ function AboutBody() {
   return (
     <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-end">
       <div>
-        <p className="text-xs tracking-brand text-mint uppercase">The label</p>
-        <h2 className="mt-3 font-display text-6xl font-black uppercase md:text-8xl">
-          The bear
-          <br />
-          takes over.
-        </h2>
-        <img
-          src="/media/bear.png"
-          alt="The Calicave bear"
-          className="about-bear mt-6 w-40 md:w-52"
-          draggable={false}
-        />
+        <div className="flex items-end justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-xs tracking-brand text-mint uppercase">The label</p>
+            <h2 className="mt-3 font-display text-[2.55rem] leading-[0.84] font-black uppercase md:text-7xl">
+              The bear
+              <br />
+              takes over.
+            </h2>
+          </div>
+          <img
+            src="/media/bear.png"
+            alt="The Calicave bear"
+            className="about-bear w-[5.25rem] shrink-0 md:w-44"
+            draggable={false}
+          />
+        </div>
       </div>
       <div className="max-w-xl space-y-4 text-base leading-relaxed font-light text-paper/85 md:text-lg">
         <p>
