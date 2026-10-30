@@ -137,6 +137,12 @@ export type NewsItem = {
 
 export const ALL_NEWS: NewsItem[] = [
   {
+    date: "Just announced",
+    title: "The Takeover Tour",
+    body: "Meekz and Mist hit the road together. It starts in the UK and Ireland in December 2026 and finishes in Thailand in January 2027. Dates are up. Tickets soon.",
+    artistId: "tour",
+  },
+  {
     date: "Now",
     title: "Reggie signs to the cave",
     body: "Dundalk rapper Reggie joins Calicave. Talk of the Town, and the Fred again.. & Sammy Virji remix, is the record that took Irish drill worldwide.",
