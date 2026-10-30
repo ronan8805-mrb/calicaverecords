@@ -15,6 +15,7 @@ export type Slide = {
   genre?: string;
   bio?: string;
   short: string;
+  track?: { title: string; youtubeId: string; start?: number };
 };
 
 export const SLIDES: Slide[] = [
@@ -42,6 +43,7 @@ export const SLIDES: Slide[] = [
     genre: "UK RAP / GRIME — BIRMINGHAM",
     bio: "Birmingham rapper. After time inside he turned to music, signed to Warner with his Sickmade imprint, and put the Midlands on the map. Diamond in the Dirt hit the UK Top 5. Hits include “So High” (feat. Fredo), “Karla’s Back” and “Game Changer”.",
     short: "Mist",
+    track: { title: "So High", youtubeId: "V3yf1AHwxGc", start: 20 },
   },
   {
     id: "meekz",
@@ -56,6 +58,7 @@ export const SLIDES: Slide[] = [
     genre: "UK RAP — MANCHESTER",
     bio: "Masked Manchester rapper. Broke through with “Hoods Hottest” and the Can’t Stop Won’t Stop EP. Respect the Come Up and TRU both hit the UK Top 15. Known for “Like Me”, “Fresh Out the Bank” (feat. Dave) and always performing with his face covered.",
     short: "Meekz",
+    track: { title: "Like Me", youtubeId: "hm-MOdLU21M" },
   },
   {
     id: "mazza",
@@ -70,6 +73,7 @@ export const SLIDES: Slide[] = [
     genre: "UK DRILL — LIVERPOOL",
     bio: "Liverpool drill rapper. Recorded tracks while serving time and broke out with the viral hit “Murdaside”, which reached the UK Top 20. Known for raw Scouse drill storytelling and projects like Against All Odds and Different Times.",
     short: "Mazza L20",
+    track: { title: "Murdaside", youtubeId: "tPPETe8hoyk" },
   },
   {
     id: "reggie",
@@ -84,6 +88,7 @@ export const SLIDES: Slide[] = [
     genre: "IRISH RAP / DRILL — DUNDALK",
     bio: "Dundalk rapper who helped pioneer Irish drill. Broke out with “Talk of the Town”, which went global after a Fred again.. & Sammy Virji remix that hit millions of streams and charted in Ireland and the UK. Known for repping his hometown hard and blending drill with more commercial sounds.",
     short: "Reggie",
+    track: { title: "Talk of the Town", youtubeId: "JbmYfMVGv3M" },
   },
 ];
 

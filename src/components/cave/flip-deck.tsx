@@ -5,6 +5,30 @@ import { SLIDES, type PanelId } from "@/data/roster";
 import { Panels } from "@/components/cave/panels";
 import { SlideFace } from "@/components/cave/slide-face";
 
+type YtPlayer = {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  seekTo: (seconds: number, allowSeekAhead: boolean) => void;
+  destroy: () => void;
+  cueVideoById: (options: { videoId: string; startSeconds?: number }) => void;
+};
+
+type YtWindow = Window & {
+  YT?: {
+    Player: new (
+      element: HTMLElement,
+      options: {
+        width?: string;
+        height?: string;
+        videoId?: string;
+        playerVars?: Record<string, number | string>;
+        events?: { onReady?: (event: { target: YtPlayer }) => void };
+      },
+    ) => YtPlayer;
+  };
+  onYouTubeIframeAPIReady?: () => void;
+};
+
 const FLIP_EASE: [number, number, number, number] = [0.76, 0, 0.18, 1];
 const FLIP_SECONDS = 1.08;
 
@@ -23,6 +47,7 @@ export function FlipDeck() {
   const [incoming, setIncoming] = useState(0);
   const [locked, setLocked] = useState(false);
   const [panel, setPanel] = useState<PanelId | null>(null);
+  const [playingId, setPlayingId] = useState<string | null>(null);
   const [reduce, setReduce] = useState(false);
   const rotateY = useMotionValue(0);
   const indexRef = useRef(0);
@@ -30,6 +55,10 @@ export function FlipDeck() {
   const busy = useRef(false);
   const live = useRef(true);
   const reduceRef = useRef(false);
+  const audioHost = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<YtPlayer | null>(null);
+  const readyRef = useRef(false);
+  const pendingPlay = useRef(false);
 
   useEffect(() => {
     live.current = true;
@@ -72,6 +101,10 @@ export function FlipDeck() {
       if (busy.current) return;
       if (panelRef.current && !force) return;
       if (next === indexRef.current) return;
+
+      pendingPlay.current = false;
+      playerRef.current?.pauseVideo();
+      setPlayingId(null);
 
       const forward = (next - indexRef.current + total) % total;
       const backward = (indexRef.current - next + total) % total;
@@ -201,6 +234,81 @@ export function FlipDeck() {
 
   const current = SLIDES[index] ?? SLIDES[0];
 
+  useEffect(() => {
+    const track = SLIDES[index]?.track;
+    readyRef.current = false;
+    if (!track || !audioHost.current) return;
+
+    let dead = false;
+    const start = track.start ?? 0;
+
+    const mount = () => {
+      const yt = (window as YtWindow).YT;
+      if (dead || !yt?.Player || !audioHost.current) return;
+      const node = document.createElement("div");
+      audioHost.current.replaceChildren(node);
+      try {
+        playerRef.current?.destroy();
+      } catch {
+        /* player already removed */
+      }
+      playerRef.current = new yt.Player(node, {
+        width: "240",
+        height: "135",
+        videoId: track.youtubeId,
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          fs: 0,
+          rel: 0,
+          playsinline: 1,
+          modestbranding: 1,
+          start,
+        },
+        events: {
+          onReady: (event: { target: YtPlayer }) => {
+            if (dead) return;
+            readyRef.current = true;
+            if (pendingPlay.current) {
+              event.target.seekTo(start, true);
+              event.target.playVideo();
+            } else {
+              event.target.cueVideoById({ videoId: track.youtubeId, startSeconds: start });
+            }
+          },
+        },
+      });
+    };
+
+    const win = window as YtWindow;
+    if (win.YT?.Player) mount();
+    else {
+      const previous = win.onYouTubeIframeAPIReady;
+      win.onYouTubeIframeAPIReady = () => {
+        previous?.();
+        mount();
+      };
+      if (!document.getElementById("yt-iframe-api")) {
+        const script = document.createElement("script");
+        script.id = "yt-iframe-api";
+        script.src = "https://www.youtube.com/iframe_api";
+        document.head.appendChild(script);
+      }
+    }
+
+    return () => {
+      dead = true;
+      readyRef.current = false;
+      try {
+        playerRef.current?.destroy();
+      } catch {
+        /* player already removed */
+      }
+      playerRef.current = null;
+    };
+  }, [index]);
+
   return (
     <main className={`relative h-dvh w-full overflow-hidden ${current.bg}`}>
       <p className="sr-only" aria-live="polite">
@@ -227,11 +335,35 @@ export function FlipDeck() {
               onNext={onNext}
               onPrev={onPrev}
               onHome={onHome}
-              onOpen={setPanel}
+              onOpen={(id) => {
+                pendingPlay.current = false;
+                playerRef.current?.pauseVideo();
+                setPlayingId(null);
+                setPanel(id);
+              }}
+              playing={playingId === current.id}
+              onToggleTrack={() => {
+                const track = current.track;
+                if (!track) return;
+                if (playingId === current.id) {
+                  pendingPlay.current = false;
+                  playerRef.current?.pauseVideo();
+                  setPlayingId(null);
+                  return;
+                }
+                pendingPlay.current = true;
+                const start = track.start ?? 0;
+                if (readyRef.current && playerRef.current) {
+                  playerRef.current.seekTo(start, true);
+                  playerRef.current.playVideo();
+                }
+                setPlayingId(current.id);
+              }}
             />
           </div>
         </motion.div>
       </div>
+      <div ref={audioHost} className="track-audio" />
       <Panels
         panel={panel}
         reduce={reduce}

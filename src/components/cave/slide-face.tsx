@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { ArrowLeft, ArrowRight, Menu } from "lucide-react";
+import { ArrowLeft, ArrowRight, Menu, Play, Square } from "lucide-react";
 import { NAV, SLIDES, pad, type PanelId, type Tone } from "@/data/roster";
 
 type Props = {
@@ -8,6 +8,8 @@ type Props = {
   onPrev: () => void;
   onHome: () => void;
   onOpen: (panel: PanelId) => void;
+  playing?: boolean;
+  onToggleTrack?: () => void;
 };
 
 function chipClass(tone: Tone) {
@@ -16,7 +18,7 @@ function chipClass(tone: Tone) {
     : "border-ink/70 text-ink hover:bg-ink hover:text-mint";
 }
 
-export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
+export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onToggleTrack }: Props) {
   const slide = SLIDES[index] ?? SLIDES[0];
   const total = SLIDES.length;
   const next = SLIDES[(index + 1) % total];
@@ -158,6 +160,12 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen }: Props) {
         className={`safe-bottom relative z-20 flex flex-col gap-4 px-5 pt-3 sm:flex-row sm:items-end sm:justify-between md:px-8 xl:px-14 ${slide.bg}`}
       >
         <div className="min-w-0">
+          {slide.track ? (
+            <button type="button" className="track-play" onClick={onToggleTrack}>
+              {playing ? <Square className="size-3.5 fill-current" /> : <Play className="size-3.5 fill-current" />}
+              {playing ? "Stop" : slide.track.title}
+            </button>
+          ) : null}
           <p className="font-display text-2xl leading-none tabular-nums md:text-3xl">
             {pad(index + 1)}
             <span className="opacity-45"> / {pad(total)}</span>
