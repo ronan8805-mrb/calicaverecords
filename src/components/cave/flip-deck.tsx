@@ -59,6 +59,8 @@ export function FlipDeck() {
   const playerRef = useRef<YtPlayer | null>(null);
   const readyRef = useRef(false);
   const pendingPlay = useRef(false);
+  const bedRef = useRef<HTMLAudioElement>(null);
+  const playingIdRef = useRef<string | null>(null);
 
   useEffect(() => {
     live.current = true;
@@ -93,6 +95,40 @@ export function FlipDeck() {
     const theme = document.querySelector('meta[name="theme-color"]');
     if (theme) theme.setAttribute("content", SLIDES[index]?.theme ?? "#68e0b5");
   }, [index]);
+
+  useEffect(() => {
+    playingIdRef.current = playingId;
+  }, [playingId]);
+
+  useEffect(() => {
+    const audio = bedRef.current;
+    if (!audio) return;
+    const artistOn = playingId === "mist" || playingId === "meekz";
+    if (artistOn) {
+      audio.pause();
+      return;
+    }
+    void audio.play().catch(() => {});
+  }, [playingId]);
+
+  useEffect(() => {
+    const audio = bedRef.current;
+    if (!audio) return;
+    const kick = () => {
+      const id = playingIdRef.current;
+      if (id === "mist" || id === "meekz") return;
+      if (audio.paused) void audio.play().catch(() => {});
+    };
+    kick();
+    window.addEventListener("pointerdown", kick);
+    window.addEventListener("keydown", kick);
+    window.addEventListener("touchstart", kick, { passive: true });
+    return () => {
+      window.removeEventListener("pointerdown", kick);
+      window.removeEventListener("keydown", kick);
+      window.removeEventListener("touchstart", kick);
+    };
+  }, []);
 
   const goTo = useCallback(
     async (target: number, force = false) => {
@@ -351,6 +387,9 @@ export function FlipDeck() {
                   setPlayingId(null);
                   return;
                 }
+                if (current.id === "mist" || current.id === "meekz") {
+                  bedRef.current?.pause();
+                }
                 pendingPlay.current = true;
                 const start = track.start ?? 0;
                 if (readyRef.current && playerRef.current) {
@@ -364,6 +403,7 @@ export function FlipDeck() {
         </motion.div>
       </div>
       <div ref={audioHost} className="track-audio" />
+      <audio ref={bedRef} src="/media/bed.mp3" loop preload="auto" className="sr-only" />
       <Panels
         panel={panel}
         reduce={reduce}
