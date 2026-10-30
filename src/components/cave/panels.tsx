@@ -224,7 +224,7 @@ function AboutBody() {
         </p>
         <p>
           MIST put Birmingham on the map. MEEKZ came out of Manchester with his face covered and
-          the charts open. MAZZA L20 turned Liverpool drill into a national record. Biggest artists
+          the charts open. MAZZA L20 turned Liverpool drill into a national record. Hottest artists
           in the world, signed to Calicave.
         </p>
         <p className="text-sm tracking-wide text-mint">Where the next wave lives.</p>

@@ -129,7 +129,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
                 </span>
               </h1>
               <p className="mt-5 max-w-md text-base font-medium leading-snug md:text-lg">
-                Biggest Artists In The World Signed To Calicave Records
+                Hottest Artists In The World Signed To Calicave Records
               </p>
             </div>
           ) : (
