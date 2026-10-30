@@ -230,6 +230,12 @@ function AboutBody() {
           <br />
           takes over.
         </h2>
+        <img
+          src="/media/bear.png"
+          alt="The Calicave bear"
+          className="about-bear mt-6 w-40 md:w-52"
+          draggable={false}
+        />
       </div>
       <div className="max-w-xl space-y-4 text-base leading-relaxed font-light text-paper/85 md:text-lg">
         <p>
