@@ -19,7 +19,9 @@ export const Route = createRootRoute({
       { name: "theme-color", content: "#68e0b5" },
     ],
     links: [
-      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png?v=2" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png?v=2" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png?v=2" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
@@ -32,7 +34,6 @@ export const Route = createRootRoute({
         href: "https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap",
       },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },
-      { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },
     ],
   }),
   component: () => (
