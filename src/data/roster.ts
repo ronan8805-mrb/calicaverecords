@@ -113,11 +113,11 @@ export const TOUR_DATES = [
   { when: "Dec 2026", city: "Liverpool", where: "England" },
   { when: "Dec 2026", city: "Manchester", where: "England" },
   { when: "Dec 2026", city: "Cardiff", where: "Wales" },
-  { when: "Dec 2026", city: "Belfast", where: "Northern Ireland" },
-  { when: "Dec 2026", city: "Cork", where: "Ireland" },
-  { when: "Dec 2026", city: "Dublin", where: "Ireland" },
-  { when: "Jan 2027", city: "Ko Samui", where: "Thailand" },
-  { when: "Jan 2027", city: "Phuket", where: "Thailand" },
+  { when: "TBA", city: "Belfast", where: "Telegraph" },
+  { when: "10 Dec", city: "Cork", where: "Cypress Avenue" },
+  { when: "17 Dec", city: "Dublin", where: "Soho" },
+  { when: "Jan", city: "Ko Samui", where: "Ark Bar" },
+  { when: "Jan", city: "Phuket", where: "Kandy Beach Club" },
 ] as const;
 
 export const NAV: { id: Exclude<PanelId, "menu">; label: string }[] = [
