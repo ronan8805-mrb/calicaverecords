@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Calicave Records — where the next wave lives. MIST, MEEKZ and MAZZA L20.",
+          "Calicave Records — where the next wave lives. MIST and MEEKZ.",
       },
       { name: "theme-color", content: "#68e0b5" },
     ],

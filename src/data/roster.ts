@@ -3,8 +3,8 @@ export type PanelId = "menu" | "artists" | "releases" | "news" | "about" | "cont
 export type Tone = "ink" | "paper";
 
 export type Slide = {
-  id: "home" | "mist" | "meekz" | "mazza" | "reggie";
-  kind: "home" | "artist";
+  id: "home" | "tour" | "mist" | "meekz" | "mazza" | "reggie";
+  kind: "home" | "tour" | "artist";
   bg: string;
   fg: string;
   tone: Tone;
@@ -16,17 +16,19 @@ export type Slide = {
   bio?: string;
   short: string;
   track?: { title: string; youtubeId: string; start?: number };
+  /** Kept in the roster, hidden until the signing is announced. */
+  held?: boolean;
 };
 
-export const SLIDES: Slide[] = [
+export const ALL_SLIDES: Slide[] = [
   {
     id: "home",
     kind: "home",
-    bg: "bg-mint",
+    bg: "bg-home",
     fg: "text-ink",
     tone: "ink",
-    theme: "#68e0b5",
-    image: "/media/home.jpg",
+    theme: "#6cd4af",
+    image: "/media/home-hero.jpg",
     imageAlt: "Calicave Records logo",
     short: "Calicave",
   },
@@ -61,6 +63,17 @@ export const SLIDES: Slide[] = [
     track: { title: "Like Me", youtubeId: "hm-MOdLU21M" },
   },
   {
+    id: "tour",
+    kind: "tour",
+    bg: "bg-ink",
+    fg: "text-paper",
+    tone: "paper",
+    theme: "#101513",
+    image: "/media/takeover.jpg",
+    imageAlt: "The Takeover Tour poster",
+    short: "Tour",
+  },
+  {
     id: "mazza",
     kind: "artist",
     bg: "bg-paper",
@@ -74,6 +87,7 @@ export const SLIDES: Slide[] = [
     bio: "Liverpool drill rapper. Recorded tracks while serving time and broke out with the viral hit “Murdaside”, which reached the UK Top 20. Known for raw Scouse drill storytelling and projects like Against All Odds and Different Times.",
     short: "Mazza L20",
     track: { title: "Murdaside", youtubeId: "tPPETe8hoyk" },
+    held: true,
   },
   {
     id: "reggie",
@@ -89,8 +103,22 @@ export const SLIDES: Slide[] = [
     bio: "Dundalk rapper who helped pioneer Irish drill. Broke out with “Talk of the Town”, which went global after a Fred again.. & Sammy Virji remix that hit millions of streams and charted in Ireland and the UK. Known for repping his hometown hard and blending drill with more commercial sounds.",
     short: "Reggie",
     track: { title: "Talk of the Town", youtubeId: "JbmYfMVGv3M" },
+    held: true,
   },
 ];
+
+export const SLIDES = ALL_SLIDES.filter((slide) => !slide.held);
+
+export const TOUR_DATES = [
+  { when: "Dec 2026", city: "Liverpool", where: "England" },
+  { when: "Dec 2026", city: "Manchester", where: "England" },
+  { when: "Dec 2026", city: "Cardiff", where: "Wales" },
+  { when: "Dec 2026", city: "Belfast", where: "Northern Ireland" },
+  { when: "Dec 2026", city: "Cork", where: "Ireland" },
+  { when: "Dec 2026", city: "Dublin", where: "Ireland" },
+  { when: "Jan 2027", city: "Ko Samui", where: "Thailand" },
+  { when: "Jan 2027", city: "Phuket", where: "Thailand" },
+] as const;
 
 export const NAV: { id: Exclude<PanelId, "menu">; label: string }[] = [
   { id: "artists", label: "Artists" },
@@ -107,7 +135,7 @@ export type NewsItem = {
   artistId: Slide["id"];
 };
 
-export const NEWS: NewsItem[] = [
+export const ALL_NEWS: NewsItem[] = [
   {
     date: "Now",
     title: "Reggie signs to the cave",
@@ -134,6 +162,8 @@ export const NEWS: NewsItem[] = [
   },
 ];
 
+export const NEWS = ALL_NEWS.filter((item) => SLIDES.some((slide) => slide.id === item.artistId));
+
 export type Release = {
   artistId: Slide["id"];
   artist: string;
@@ -142,7 +172,7 @@ export type Release = {
   tracks: string[];
 };
 
-export const RELEASES: Release[] = [
+export const ALL_RELEASES: Release[] = [
   {
     artistId: "mist",
     artist: "MIST",
@@ -179,6 +209,10 @@ export const RELEASES: Release[] = [
     tracks: ["Fred again.. & Sammy Virji remix"],
   },
 ];
+
+export const RELEASES = ALL_RELEASES.filter((release) =>
+  SLIDES.some((slide) => slide.id === release.artistId),
+);
 
 export function pad(n: number) {
   return String(n).padStart(2, "0");

@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { ArrowLeft, ArrowRight, Menu, Play, Square } from "lucide-react";
-import { NAV, SLIDES, pad, type PanelId, type Tone } from "@/data/roster";
+import { NAV, SLIDES, TOUR_DATES, pad, type PanelId, type Tone } from "@/data/roster";
 
 type Props = {
   index: number;
@@ -23,18 +23,12 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
   const total = SLIDES.length;
   const next = SLIDES[(index + 1) % total];
   const isHome = slide.kind === "home";
+  const isTour = slide.kind === "tour";
   const ringId = `ring-${useId().replace(/:/g, "")}`;
 
   return (
     <article className={`relative flex h-full w-full flex-col ${slide.bg} ${slide.fg}`}>
-      {isHome ? (
-        <img
-          src={slide.image}
-          alt=""
-          draggable={false}
-          className="home-photo hidden xl:block"
-        />
-      ) : (
+      {slide.kind === "artist" ? (
         <img
           src={slide.image}
           alt={slide.imageAlt}
@@ -43,7 +37,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
             slide.id === "meekz" ? " artist-photo-meekz" : ""
           }${slide.id === "reggie" ? " artist-photo-reggie" : ""}`}
         />
-      )}
+      ) : null}
       <div className="grain" aria-hidden="true" />
 
       <header
@@ -59,12 +53,11 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
             aria-label="Calicave Records, home"
           >
             <img
-              src="/media/logo-nav.png"
+              src="/media/wordmark.png"
               alt=""
-              className="size-11 rounded-full"
+              className="h-9 w-auto"
               draggable={false}
             />
-            <span className="font-display text-2xl leading-none tracking-wide">CALICAVE</span>
           </button>
         )}
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
@@ -92,16 +85,20 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
       <div className="relative z-10 flex min-h-0 flex-1 flex-col px-5 md:px-8 xl:px-14">
         {isHome ? (
           <img
-            src="/media/logo-mark.png"
+            src={slide.image}
             alt={slide.imageAlt}
             draggable={false}
-            className="home-still mt-2 self-start xl:hidden"
+            className="home-hero"
           />
         ) : null}
 
         <div
-          className={`flex flex-1 flex-col justify-end pb-2 xl:justify-center ${
-            isHome ? "xl:items-end" : ""
+          className={`flex flex-1 flex-col pb-2 ${
+            isHome
+              ? "justify-end xl:justify-center xl:items-end"
+              : isTour
+                ? "min-h-0 justify-start"
+                : "justify-end xl:justify-center"
           }`}
         >
           {isHome ? (
@@ -133,6 +130,36 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
               <p className="mt-5 max-w-md text-base font-medium leading-snug md:text-lg">
                 Hottest Artists In The World Signed To Calicave Records
               </p>
+              <p className="mt-3 max-w-md text-sm leading-snug font-medium md:text-base">
+                Meekz and Mist. The Takeover Tour. December 2026 – January 2027. More acts to be
+                announced. Check the last slide for dates.
+              </p>
+            </div>
+          ) : isTour ? (
+            <div className="tour-copy">
+              <div className="tour-glass">
+                <img src={slide.image} alt={slide.imageAlt} draggable={false} />
+              </div>
+              <p className="mt-3 text-[0.62rem] font-medium tracking-brand uppercase">
+                Calicave Records presents
+              </p>
+              <h1 className="mt-1 font-display text-[2.55rem] leading-[0.84] font-black uppercase">
+                The Takeover Tour
+              </h1>
+              <p className="mt-2 max-w-md text-[0.84rem] leading-snug font-light text-paper/80">
+                CaliCave Records presents Meekz and Mist on their first joint tour. Starting in the
+                UK and Ireland, finishing in Thailand. December 2026 – January 2027.
+              </p>
+              <ul className="tour-dates">
+                {TOUR_DATES.map((stop) => (
+                  <li key={stop.city}>
+                    <span className="tour-city">{stop.city}</span>
+                    <span className="tour-meta">
+                      {stop.when} · {stop.where}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ) : (
             <div

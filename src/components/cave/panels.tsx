@@ -35,8 +35,7 @@ export function Panels({ panel, reduce, onClose, onOpen, onJump }: Props) {
           <div className="mx-auto flex min-h-dvh w-full max-w-6xl flex-col px-5 py-5 md:px-10">
             <header className="flex items-center justify-between gap-4">
               <button type="button" onClick={onClose} className="flex items-center gap-2.5">
-                <img src="/media/logo-nav.png" alt="" className="size-11 rounded-full" />
-                <span className="font-display text-2xl leading-none tracking-wide">CALICAVE</span>
+                <img src="/media/wordmark.png" alt="" className="h-9 w-auto" />
               </button>
               <button
                 ref={closeRef}
@@ -224,8 +223,7 @@ function AboutBody() {
         </p>
         <p>
           MIST put Birmingham on the map. MEEKZ came out of Manchester with his face covered and
-          the charts open. MAZZA L20 turned Liverpool drill into a national record. Hottest artists
-          in the world, signed to Calicave.
+          the charts open. Hottest artists in the world, signed to Calicave.
         </p>
         <p className="text-sm tracking-wide text-mint">Where the next wave lives.</p>
       </div>

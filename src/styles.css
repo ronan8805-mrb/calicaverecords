@@ -5,6 +5,7 @@
   --font-sans: "Outfit", system-ui, sans-serif;
 
   --color-mint: #68e0b5;
+  --color-home: #6cd4af;
   --color-cyan: #2fc7c8;
   --color-blood: #cf0105;
   --color-gold: #fbc203;
@@ -112,22 +113,118 @@
   pointer-events: none;
 }
 
-.home-still {
-  width: min(52vw, 220px);
+.home-hero {
+  display: block;
+  width: 100vw;
+  max-width: 100vw;
   height: auto;
-  max-height: 22dvh;
-  min-height: 0;
-  flex: 0 1 auto;
-  object-fit: contain;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-left: calc(50% - 50vw);
+  object-fit: cover;
+  object-position: left top;
+  flex: 0 0 auto;
 }
 
-.home-lead {
-  flex-shrink: 0;
+.tour-glass {
+  position: relative;
+  width: min(38vw, 168px);
+  align-self: flex-end;
+  flex: 0 0 auto;
+  padding: 7px;
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.34),
+    rgba(255, 255, 255, 0.06) 46%,
+    rgba(255, 255, 255, 0.16)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 22px 46px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  animation: tour-float 6s ease-in-out infinite;
 }
 
-.home-still:hover {
-  transform: scale(1.04) rotate(-2deg);
+.tour-glass::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border-radius: 16px;
+  background: linear-gradient(
+    118deg,
+    rgba(255, 255, 255, 0.34),
+    transparent 36%,
+    transparent 64%,
+    rgba(255, 255, 255, 0.1)
+  );
+  pointer-events: none;
+}
+
+.tour-glass img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.tour-dates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, auto);
+  grid-auto-flow: column;
+  column-gap: 0.7rem;
+  margin-top: 0.45rem;
+}
+
+.tour-dates li {
+  min-width: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 0.16rem 0 0.1rem;
+}
+
+.tour-city {
+  display: block;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.tour-meta {
+  display: block;
+  font-size: 0.52rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+@keyframes tour-float {
+  0%,
+  100% {
+    transform: rotate(-3.5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-1.5deg) translateY(-8px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .tour-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .tour-glass {
+    width: 280px;
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    align-self: center;
+  }
 }
 
 .wave-word {
@@ -345,11 +442,11 @@
   .artist-name,
   .artist-genre,
   .next-arrow,
-  .artist-photo {
+  .artist-photo,
+  .tour-glass {
     animation: none;
   }
 
-  .home-still,
   .artist-photo,
   .next-arrow,
   .cave-ctrl {
