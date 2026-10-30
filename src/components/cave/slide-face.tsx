@@ -103,7 +103,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
           }`}
         >
           {isHome ? (
-            <div className="xl:w-[48%] xl:max-w-xl">
+            <div className="home-lead xl:w-[48%] xl:max-w-xl">
               <p className="text-xs font-medium tracking-brand uppercase">Calicave Records</p>
               <h1 className="wave-title mt-3 font-display text-display font-black uppercase">
                 <span className="block">

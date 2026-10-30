@@ -113,11 +113,17 @@
 }
 
 .home-still {
-  width: min(58vw, 250px);
+  width: min(52vw, 220px);
   height: auto;
-  max-height: 30dvh;
+  max-height: 22dvh;
+  min-height: 0;
+  flex: 0 1 auto;
   object-fit: contain;
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-lead {
+  flex-shrink: 0;
 }
 
 .home-still:hover {
