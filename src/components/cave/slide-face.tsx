@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { ArrowLeft, ArrowRight, Menu, Play, Square } from "lucide-react";
-import { NAV, SLIDES, TOUR_DATES, pad, type PanelId, type Tone } from "@/data/roster";
+import { BELFAST_SHOWS, NAV, SLIDES, TOUR_DATES, pad, type PanelId, type Tone } from "@/data/roster";
 
 type Props = {
   index: number;
@@ -24,6 +24,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
   const next = SLIDES[(index + 1) % total];
   const isHome = slide.kind === "home";
   const isTour = slide.kind === "tour";
+  const isShow = slide.kind === "show";
   const ringId = `ring-${useId().replace(/:/g, "")}`;
 
   return (
@@ -96,7 +97,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
           className={`flex flex-1 flex-col pb-2 ${
             isHome
               ? "justify-end xl:justify-center xl:items-end"
-              : isTour
+              : isTour || isShow
                 ? "min-h-0 justify-start"
                 : "justify-end xl:justify-center"
           }`}
@@ -130,11 +131,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
               <p className="mt-2 max-w-md text-sm leading-snug font-medium md:mt-5 md:text-lg">
                 Hottest Artists In The World Signed To Calicave Records
               </p>
-              <p className="mt-1.5 max-w-md text-[0.78rem] leading-snug font-medium md:mt-3 md:text-base">
-                Meekz and Mist. The Takeover Tour. December 2026 – January 2027. More acts to be
-                announced. Check the last slide for dates.
-              </p>
-              <div className="mt-2 max-w-md">
+              <div className="mt-3 max-w-md">
                 <p className="text-[0.62rem] font-semibold tracking-brand uppercase">
                   Extra dates added · Tickets on sale now
                 </p>
@@ -182,6 +179,39 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
                   </li>
                 ))}
               </ul>
+            </div>
+          ) : isShow ? (
+            <div className="tour-copy">
+              <div className="tour-glass">
+                <img src={slide.image} alt={slide.imageAlt} draggable={false} />
+              </div>
+              <p className="mt-2 text-[0.62rem] font-medium tracking-brand uppercase">
+                Calicave Records presents
+              </p>
+              <h1 className="mt-1 font-display text-[2.05rem] leading-[0.84] font-black uppercase">
+                Mazza live
+                <br />
+                in Belfast
+              </h1>
+              <p className="mt-1.5 text-[0.75rem] leading-snug font-light text-paper/80">
+                Mandela Hall, Belfast. Extra dates added. Tickets on sale now.
+              </p>
+              <ul className="tour-dates belfast-dates">
+                {BELFAST_SHOWS.map((show) => (
+                  <li key={show.detail}>
+                    <span className="tour-city">{show.when}</span>
+                    <span className="tour-meta">{show.detail}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://linktr.ee/TheCaliCaveRecords"
+                target="_blank"
+                rel="noreferrer"
+                className="ticket-link mt-3"
+              >
+                Tickets
+              </a>
             </div>
           ) : (
             <div

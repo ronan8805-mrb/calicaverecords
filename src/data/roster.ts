@@ -3,8 +3,8 @@ export type PanelId = "menu" | "artists" | "releases" | "news" | "about" | "cont
 export type Tone = "ink" | "paper";
 
 export type Slide = {
-  id: "home" | "tour" | "mist" | "meekz" | "mazza" | "reggie";
-  kind: "home" | "tour" | "artist";
+  id: "home" | "tour" | "belfast" | "mist" | "meekz" | "mazza" | "reggie";
+  kind: "home" | "tour" | "show" | "artist";
   bg: string;
   fg: string;
   tone: Tone;
@@ -74,6 +74,17 @@ export const ALL_SLIDES: Slide[] = [
     short: "Tour",
   },
   {
+    id: "belfast",
+    kind: "show",
+    bg: "bg-ink",
+    fg: "text-paper",
+    tone: "paper",
+    theme: "#101513",
+    image: "/media/mazza-belfast.jpg",
+    imageAlt: "Mazza live in Belfast poster",
+    short: "Belfast",
+  },
+  {
     id: "mazza",
     kind: "artist",
     bg: "bg-paper",
@@ -118,6 +129,12 @@ export const TOUR_DATES = [
   { when: "17 Dec", city: "Dublin", where: "Soho" },
   { when: "Jan", city: "Ko Samui", where: "Ark Bar" },
   { when: "Jan", city: "Phuket", where: "Kandy Beach Club" },
+] as const;
+
+export const BELFAST_SHOWS = [
+  { when: "Thu 19 Nov", detail: "Over 18s · 7–11pm" },
+  { when: "Fri 20 Nov", detail: "All ages · 5–7.30pm" },
+  { when: "Fri 20 Nov", detail: "Over 18s · 9pm–1am" },
 ] as const;
 
 export const NAV: { id: Exclude<PanelId, "menu">; label: string }[] = [
