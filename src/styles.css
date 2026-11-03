@@ -180,7 +180,7 @@
 .tour-dates {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(4, auto);
+  grid-template-rows: repeat(3, auto);
   grid-auto-flow: column;
   column-gap: 0.7rem;
   margin-top: 0.35rem;
