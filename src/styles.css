@@ -134,6 +134,12 @@
   text-transform: uppercase;
 }
 
+.ticket-link-solid {
+  background: #fff;
+  color: #101513;
+  border-color: #fff;
+}
+
 .tour-glass {
   position: relative;
   width: min(30vw, 128px);

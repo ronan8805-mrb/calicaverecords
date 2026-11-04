@@ -54,7 +54,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
             aria-label="Calicave Records, home"
           >
             <img
-              src="/media/wordmark.png"
+              src={slide.id === "mazza" ? "/media/wordmark-ink.png" : "/media/wordmark.png"}
               alt=""
               className="h-9 w-auto"
               draggable={false}
@@ -196,6 +196,14 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
               <p className="mt-1.5 text-[0.75rem] leading-snug font-light text-paper/80">
                 Mandela Hall, Belfast. Extra dates added. Tickets on sale now.
               </p>
+              <a
+                href="https://linktr.ee/TheCaliCaveRecords"
+                target="_blank"
+                rel="noreferrer"
+                className="ticket-link ticket-link-solid mt-3"
+              >
+                Tickets
+              </a>
               <ul className="tour-dates belfast-dates">
                 {BELFAST_SHOWS.map((show) => (
                   <li key={show.detail}>
@@ -204,14 +212,6 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
                   </li>
                 ))}
               </ul>
-              <a
-                href="https://linktr.ee/TheCaliCaveRecords"
-                target="_blank"
-                rel="noreferrer"
-                className="ticket-link mt-3"
-              >
-                Tickets
-              </a>
             </div>
           ) : (
             <div
