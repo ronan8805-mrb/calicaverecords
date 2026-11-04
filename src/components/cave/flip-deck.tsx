@@ -403,7 +403,7 @@ export function FlipDeck() {
         </motion.div>
       </div>
       <div ref={audioHost} className="track-audio" />
-      <audio ref={bedRef} src="/media/bed.mp3?v=2" loop preload="auto" className="sr-only" />
+      <audio ref={bedRef} src="/media/bed.mp3?v=3" loop preload="auto" className="sr-only" />
       <Panels
         panel={panel}
         reduce={reduce}
