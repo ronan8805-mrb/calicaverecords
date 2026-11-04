@@ -25,7 +25,7 @@ export const Route = createRootRoute({
         content: "Calicave Records — where the next wave lives.",
       },
       { property: "og:url", content: "https://calicavephuket.com/" },
-      { property: "og:image", content: "https://calicavephuket.com/og-v2.jpg" },
+      { property: "og:image", content: "https://calicavephuket.com/og.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -34,7 +34,7 @@ export const Route = createRootRoute({
         name: "twitter:description",
         content: "Calicave Records — where the next wave lives.",
       },
-      { name: "twitter:image", content: "https://calicavephuket.com/og-v2.jpg" },
+      { name: "twitter:image", content: "https://calicavephuket.com/og.png" },
     ],
     links: [
       { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32.png?v=2" },
