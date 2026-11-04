@@ -115,7 +115,7 @@
 
 .home-hero {
   display: block;
-  width: min(72vw, 280px);
+  width: min(58vw, 220px);
   height: auto;
   object-fit: contain;
   object-position: left center;

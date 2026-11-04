@@ -105,7 +105,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
           {isHome ? (
             <div className="home-lead xl:w-[48%] xl:max-w-xl">
               <p className="text-xs font-medium tracking-brand uppercase">Calicave Records</p>
-              <h1 className="wave-title mt-2 font-display text-[1.95rem] leading-[0.82] font-black uppercase md:text-display">
+              <h1 className="wave-title mt-1 font-display text-[1.65rem] leading-[0.82] font-black uppercase md:text-display">
                 <span className="block">
                   <span className="wave-word" style={{ animationDelay: "0s" }}>
                     Where
@@ -128,18 +128,18 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
                   </span>
                 </span>
               </h1>
-              <p className="mt-2 max-w-md text-sm leading-snug font-medium md:mt-5 md:text-lg">
+              <p className="mt-1.5 max-w-md text-[0.8rem] leading-snug font-medium md:mt-5 md:text-lg">
                 Hottest Artists In The World Signed To Calicave Records
               </p>
-              <div className="mt-3 max-w-md">
-                <p className="text-[0.62rem] font-semibold tracking-brand uppercase">
+              <div className="mt-2 max-w-md">
+                <p className="text-[0.58rem] font-semibold tracking-brand uppercase">
                   Extra dates added · Tickets on sale now
                 </p>
-                <p className="mt-1 font-display text-[1.7rem] leading-none font-black uppercase">
+                <p className="mt-0.5 font-display text-[1.35rem] leading-none font-black uppercase">
                   Mazza live in Belfast
                 </p>
-                <p className="mt-1 text-xs font-semibold tracking-wide uppercase">Mandela Hall</p>
-                <ul className="mt-1.5 space-y-0.5 text-[0.72rem] leading-snug font-medium">
+                <p className="mt-0.5 text-[0.68rem] font-semibold tracking-wide uppercase">Mandela Hall</p>
+                <ul className="mt-1 space-y-0 text-[0.68rem] leading-tight font-medium">
                   <li>Thu 19 Nov — Over 18s, 7–11pm</li>
                   <li>Fri 20 Nov — All ages, 5–7.30pm</li>
                   <li>Fri 20 Nov — Over 18s, 9pm–1am</li>
@@ -148,7 +148,7 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
                   href="https://linktr.ee/TheCaliCaveRecords"
                   target="_blank"
                   rel="noreferrer"
-                  className="ticket-link mt-3"
+                  className="ticket-link mt-2"
                 >
                   Tickets
                 </a>
