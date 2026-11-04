@@ -152,6 +152,12 @@ export type NewsItem = {
 export const ALL_NEWS: NewsItem[] = [
   {
     date: "Just announced",
+    title: "Mazza live in Belfast",
+    body: "Mazza plays Mandela Hall. Thursday 19 November, over 18s, 7–11pm. Friday 20 November, all ages, 5–7.30pm, and over 18s, 9pm–1am. Extra dates added. Tickets on sale now.",
+    artistId: "belfast",
+  },
+  {
+    date: "Just announced",
     title: "The Takeover Tour",
     body: "Meekz and Mist hit the road together. It starts in the UK and Ireland in December 2026 and finishes in Thailand in January 2027. Dates are up. Tickets soon.",
     artistId: "tour",
