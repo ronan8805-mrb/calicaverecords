@@ -251,8 +251,8 @@ function AboutBody() {
           with the artists who can carry a room on either coast.
         </p>
         <p>
-          MIST put Birmingham on the map. MEEKZ came out of Manchester with his face covered and
-          the charts open. More acts are still to be announced.
+          MIST put Birmingham on the map. MAZZA came out of Liverpool with Murdaside.
+          More acts are still to be announced.
         </p>
         <p className="text-sm tracking-wide text-mint">Where the next wave lives.</p>
       </div>

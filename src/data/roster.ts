@@ -76,6 +76,7 @@ export const ALL_SLIDES: Slide[] = [
     bio: "Masked Manchester rapper. Broke through with “Hoods Hottest” and the Can’t Stop Won’t Stop EP. Respect the Come Up and TRU both hit the UK Top 15. Known for “Like Me”, “Fresh Out the Bank” (feat. Dave) and always performing with his face covered.",
     short: "Meekz",
     track: { title: "Like Me", youtubeId: "hm-MOdLU21M" },
+    held: true,
   },
   {
     id: "belfast",
@@ -129,9 +130,8 @@ export const TOUR_DATES = [
 ] as const;
 
 export const BELFAST_SHOWS = [
-  { when: "Thu 19 Nov", detail: "Over 18s · 7–11pm" },
-  { when: "Fri 20 Nov", detail: "All ages · 5–7.30pm" },
-  { when: "Fri 20 Nov", detail: "Over 18s · 9pm–1am" },
+  { when: "Thu 19 Nov", detail: "Over 18s · 7.30pm–12am" },
+  { when: "Fri 20 Nov", detail: "Over 18s · 7.30pm–12am" },
 ] as const;
 
 export const NAV: { id: Exclude<PanelId, "menu">; label: string }[] = [
@@ -153,7 +153,7 @@ export const ALL_NEWS: NewsItem[] = [
   {
     date: "Just announced",
     title: "Mazza live in Belfast",
-    body: "Mazza plays Mandela Hall. Thursday 19 November, over 18s, 7–11pm. Friday 20 November, all ages, 5–7.30pm, and over 18s, 9pm–1am. Extra dates added. Tickets on sale now.",
+    body: "Mazza plays Mandela Hall. Thursday 19 November and Friday 20 November, over 18s, 7.30pm–12am. Extra dates added. Tickets on sale now.",
     artistId: "belfast",
   },
   {

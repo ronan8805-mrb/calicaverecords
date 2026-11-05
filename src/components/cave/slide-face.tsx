@@ -140,9 +140,8 @@ export function SlideFace({ index, onNext, onPrev, onHome, onOpen, playing, onTo
                 </p>
                 <p className="mt-0.5 text-[0.68rem] font-semibold tracking-wide uppercase">Mandela Hall</p>
                 <ul className="mt-1 space-y-0 text-[0.68rem] leading-tight font-medium">
-                  <li>Thu 19 Nov — Over 18s, 7–11pm</li>
-                  <li>Fri 20 Nov — All ages, 5–7.30pm</li>
-                  <li>Fri 20 Nov — Over 18s, 9pm–1am</li>
+                  <li>Thu 19 Nov — Over 18s, 7.30pm–12am</li>
+                  <li>Fri 20 Nov — Over 18s, 7.30pm–12am</li>
                 </ul>
                 <a
                   href="https://linktr.ee/TheCaliCaveRecords"
