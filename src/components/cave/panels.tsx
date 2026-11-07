@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { NAV, NEWS, RELEASES, SLIDES, pad, type PanelId } from "@/data/roster";
+import { Link } from "@tanstack/react-router";
+import { NAV, RELEASES, SLIDES, pad, type PanelId } from "@/data/roster";
+import { ARTICLES } from "@/data/articles";
 
 type Props = {
   panel: PanelId | null;
@@ -65,7 +67,7 @@ export function Panels({ panel, reduce, onClose, onOpen, onJump }: Props) {
               {panel === "menu" ? <MenuBody onOpen={onOpen} /> : null}
               {panel === "artists" ? <ArtistsBody onJump={onJump} /> : null}
               {panel === "releases" ? <ReleasesBody onJump={onJump} /> : null}
-              {panel === "news" ? <NewsBody onJump={onJump} /> : null}
+              {panel === "news" ? <NewsBody /> : null}
               {panel === "about" ? <AboutBody /> : null}
               {panel === "contact" ? <ContactBody /> : null}
             </div>
@@ -185,36 +187,38 @@ function ReleasesBody({ onJump }: { onJump: (index: number) => void }) {
   );
 }
 
-function NewsBody({ onJump }: { onJump: (index: number) => void }) {
+function NewsBody() {
   return (
     <div>
       <p className="text-xs tracking-brand text-mint uppercase">From the cave</p>
       <h2 className="mt-3 font-display text-6xl font-black uppercase md:text-8xl">News</h2>
       <ul className="mt-10">
-        {NEWS.map((item) => {
-          const index = SLIDES.findIndex((slide) => slide.id === item.artistId);
-          return (
-            <li key={item.title} className="border-t border-paper/15">
-              <button
-                type="button"
-                onClick={() => onJump(index)}
-                className="grid w-full gap-3 py-6 text-left md:grid-cols-[7rem_1fr] md:gap-8"
-              >
-                <span className="text-xs font-semibold tracking-brand text-mint uppercase">
-                  {item.date}
-                </span>
-                <span>
-                  <span className="block font-display text-4xl font-black uppercase md:text-5xl">
-                    {item.title}
-                  </span>
-                  <span className="mt-2 block max-w-2xl text-sm leading-relaxed font-light text-paper/75 md:text-base">
-                    {item.body}
-                  </span>
-                </span>
-              </button>
-            </li>
-          );
-        })}
+        {ARTICLES.map((article) => (
+          <li key={article.slug} className="border-t border-paper/15">
+            <article className="grid gap-4 py-6 md:grid-cols-[9rem_1fr] md:gap-8">
+              <img src={article.image} alt="" className="aspect-[4/3] w-full object-cover md:aspect-square" />
+              <div>
+                <p className="text-xs font-semibold tracking-brand text-mint uppercase">{article.date}</p>
+                <h3 className="mt-2 font-display text-4xl leading-[0.9] font-black uppercase md:text-5xl">
+                  {article.title}
+                </h3>
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed font-light text-paper/75 md:text-base">
+                  {article.excerpt}
+                </p>
+                <div className="mt-4 flex items-center gap-4">
+                  <Link
+                    to="/news/$slug"
+                    params={{ slug: article.slug }}
+                    className="text-xs font-semibold tracking-brand text-mint uppercase underline"
+                  >
+                    Read more
+                  </Link>
+                  <span className="text-sm text-paper/70">♡ {article.likes}</span>
+                </div>
+              </div>
+            </article>
+          </li>
+        ))}
       </ul>
     </div>
   );
